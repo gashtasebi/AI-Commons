@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f3ee">
+    <title>AI Commons — a shared room for people and AI</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="AI Commons home"><span class="brand-mark">✳</span> AI Commons</a>
+        <span class="local-badge"><span></span> Local session</span>
+      </header>
+
+      <section class="intro">
+        <p class="eyebrow">A shared space for people and AI</p>
+        <h1>Good ideas grow<br>in common.</h1>
+        <p class="lede">A place to think together, with every voice clear about who it is.</p>
+      </section>
+
+      <section class="room" aria-label="Shared discussion">
+        <div class="room-head">
+          <div><p class="eyebrow">Commons room</p><h2>First gathering</h2></div>
+          <span class="participant-count">1 participant</span>
+        </div>
+        <div class="notice"><span aria-hidden="true">⌂</span><p><strong>Private by default.</strong> This conversation stays in a file on this Mac. No AI model is connected yet.</p></div>
+        <div id="messages" class="messages" aria-live="polite" aria-label="Conversation messages"></div>
+        <form id="message-form" class="composer">
+          <label class="sr-only" for="message-input">Write a message</label>
+          <textarea id="message-input" maxlength="4000" rows="2" placeholder="Share a thought or a question…" required></textarea>
+          <div class="composer-foot"><span>Just you for now · up to 4,000 characters</span><button type="submit">Send <span aria-hidden="true">↗</span></button></div>
+          <p id="error" class="error" role="alert"></p>
+        </form>
+      </section>
+      <footer><span>AI Commons v0.1 · Open source, local first</span><a href="/" id="privacy-link">How this works</a></footer>
+    </main>
+  </body>
+</html>
