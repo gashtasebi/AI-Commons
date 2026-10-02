@@ -4,11 +4,11 @@ AI Commons is an open-source space for people and AI systems to work together. T
 
 ## v0.1 starting point
 
-The initial scaffold provides a small local web server and a browser interface for a shared discussion. A human can add messages and inspect the conversation. Model-provider integration is intentionally left behind a future adapter boundary: connecting a hosted model can incur cost and requires credentials, so the zero-cost default does not make external calls.
+The local room supports human messages and manually invited Ollama models. AI replies are labeled with the exact model name and stored alongside the discussion. Nothing is sent to a hosted AI service; the app never calls a model automatically.
 
 ## Run locally
 
-Requires Python 3.10 or newer. From this directory, run:
+Requires Python 3.10 or newer. To use the local AI feature, install Ollama and at least one model; the app still works as a human-only room without it. From this directory, run:
 
 ```sh
 python3 server.py
@@ -23,6 +23,12 @@ Then open <http://127.0.0.1:8000>. The server binds to localhost only. Conversat
 - `data/` — local runtime data; not committed.
 - `docs/ROADMAP.md` — early product and technical direction.
 
+## Local model
+
+The app looks for a running Ollama service at `127.0.0.1:11434`, lists models already installed, and sends a prompt and recent room context only when a person selects a model and invites it. Install a model through Ollama's normal process if none appears. Model responses are untrusted contributions and should be reviewed like any other participant's message.
+
+For example, after installing Ollama you can add a small model with `ollama pull llama3.2:3b`. The app's web server and Ollama endpoint both stay on localhost; do not expose either port to a network.
+
 ## Principles
 
 - Human participants retain control over project decisions.
@@ -33,4 +39,8 @@ Then open <http://127.0.0.1:8000>. The server binds to localhost only. Conversat
 
 ## Status
 
-This is an early scaffold, not a production service. It has no authentication, remote access, model connectors, or multi-user synchronization. Keep it on localhost until those features are deliberately designed.
+This is an early local prototype, not a production service. It has no authentication, remote access, or multi-user synchronization. Keep it on localhost until those features are deliberately designed.
+
+## License
+
+The AI Commons source code is available under the MIT License. Model weights are downloaded separately and remain subject to their own licenses and terms.

@@ -24,9 +24,9 @@
       <section class="room" aria-label="Shared discussion">
         <div class="room-head">
           <div><p class="eyebrow">Commons room</p><h2>First gathering</h2></div>
-          <span class="participant-count">1 participant</span>
+          <span id="participant-count" class="participant-count">You + local models</span>
         </div>
-        <div class="notice"><span aria-hidden="true">⌂</span><p><strong>Private by default.</strong> This conversation stays in a file on this Mac. No AI model is connected yet.</p></div>
+        <div class="notice"><span aria-hidden="true">⌂</span><p><strong>Private by default.</strong> Messages stay in a file on this Mac. Invited models run through local Ollama; no cloud AI is contacted.</p></div>
         <div id="messages" class="messages" aria-live="polite" aria-label="Conversation messages"></div>
         <form id="message-form" class="composer">
           <label class="sr-only" for="message-input">Write a message</label>
@@ -34,8 +34,17 @@
           <div class="composer-foot"><span>Just you for now · up to 4,000 characters</span><button type="submit">Send <span aria-hidden="true">↗</span></button></div>
           <p id="error" class="error" role="alert"></p>
         </form>
+        <form id="invite-form" class="invite">
+          <div class="invite-heading"><div><p class="eyebrow">Bring in a voice</p><h3>Ask a local AI</h3></div><span class="local-only">Runs on this Mac</span></div>
+          <label class="sr-only" for="model-select">Choose a local model</label>
+          <select id="model-select" disabled><option>Looking for local models…</option></select>
+          <label class="sr-only" for="invite-input">Question for the local AI</label>
+          <textarea id="invite-input" maxlength="4000" rows="2" placeholder="What would you like another perspective on?" required></textarea>
+          <div class="composer-foot"><span id="model-status">Checking local Ollama…</span><button id="invite-button" type="submit" disabled>Invite model <span aria-hidden="true">↗</span></button></div>
+          <p id="invite-error" class="error" role="alert"></p>
+        </form>
       </section>
-      <footer><span>AI Commons v0.1 · Open source, local first</span><a href="/" id="privacy-link">How this works</a></footer>
+      <footer><span>AI Commons v0.1 · Open source, local first</span><a href="https://github.com/gashtasebi/AI-Commons" target="_blank" rel="noreferrer">View on GitHub</a></footer>
     </main>
   </body>
 </html>
