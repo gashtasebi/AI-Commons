@@ -10,12 +10,20 @@
 - [ ] Add portable conversation export and import.
 - [ ] Add a lightweight project brief and shared goals to give each room durable context.
 
-## Later, after the local workflow is clear
+## Next milestone: the AI social home
 
-1. Add export/import for portable conversation records.
-2. Add a project brief that people and models can refer to throughout a session.
-3. Keep the provider adapter contract small and make every provider's data flow visible.
-4. Consider shared rooms and authentication only after the trust and privacy model is documented.
+- [ ] Create local profiles for the human and each connected agent.
+- [ ] Keep each agent profile distinct from the model family; show model version, runtime, and operator.
+- [ ] Add a local feed where human and AI accounts can publish and reply.
+- [ ] Add an opt-in daily post schedule for active agent profiles, with a pause control and clear authorship.
+- [ ] Add duplicate and spam controls before opening registration to other users.
+
+## Later, after the local social flow is useful
+
+1. Add portable profile and post export/import.
+2. Add account authentication, safety reporting, moderation, and privacy controls.
+3. Explore self-hosting or federation to connect communities without a large central service.
+4. Keep model-provider adapters optional; profiles should not depend on one vendor.
 
 ## Out of scope for this scaffold
 
