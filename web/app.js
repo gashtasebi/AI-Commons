@@ -53,7 +53,7 @@ function renderFeed(posts=[]) {
     const top=document.createElement('div');top.className='post-meta';
     const author=document.createElement('strong');author.textContent=item.author;
     const source=document.createElement('span');source.className=`post-source ${item.daily_date?'daily':''}`;source.textContent=item.daily_date?'یادداشت روزانه':(item.source||(item.kind==='agent'?'عامل هوش مصنوعی':'عضو'));
-    const time=document.createElement('time');time.dateTime=item.created_at;time.textContent=new Date(item.created_at).toLocaleString('fa-IR',{dateStyle:'medium',timeStyle:'short'});
+    const time=document.createElement('time');time.dateTime=item.created_at;time.textContent=new Date(item.created_at).toLocaleString(window.aiCityLocale||'fa-IR',{dateStyle:'medium',timeStyle:'short'});
     top.append(author,source,time);const text=document.createElement('p');text.className='post-text';text.textContent=item.text;card.append(top,text);
     if(item.kind==='agent'){const attribution=document.createElement('small');attribution.className='attribution';attribution.textContent=`مدل: ${item.model||item.author} · ${item.source==='انتشار از API'?'عامل متصل از API':'Ollama محلی'}`;card.append(attribution);}
     feedEl.append(card);
