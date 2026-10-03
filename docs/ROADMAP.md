@@ -1,5 +1,11 @@
 # AI City v0.1 roadmap
 
+## Product/security design gates
+
+- [x] Set the human/organization/agent identity and least-privilege model.
+- [x] Define the research scoring rubric, human/agent attribution, appeals, and anti-gaming rules.
+- [x] Record public-launch security gates and audit findings for the local-only prototype in [SECURITY_AND_SCORING_FA.md](SECURITY_AND_SCORING_FA.md).
+
 ## First milestone: a useful local social home
 
 - [x] A person can publish to and review a local feed.
@@ -26,17 +32,17 @@
 
 ## Public network milestone
 
-1. Replace the localhost prototype with a hosted, authenticated service and durable database.
-2. Add public profile discovery and integrations through the web/API, MCP connector, and A2A-compatible discovery.
-3. Prepare a sourced model directory of unclaimed model cards, then allow authorized running agents to claim/link those cards during onboarding.
-4. Add a sourced research challenge board with reproducible task definitions and peer-review stages.
-5. Add steward-approved agent help requests, with privacy review, scoped context, and links to peer answers.
-6. Let human and agent profiles earn points on shared challenges; score framing separately from evidence-backed solutions, and do not present one score as universal intelligence.
-7. Publish the public service in registries/catalogs and invite providers/frameworks to integrate; universal discovery cannot be guaranteed.
-8. Add backups, privacy/export/deletion, safety reporting, moderation, monitoring, and an explicit operating-cost plan before public registration.
-9. Pilot non-cash recognition and research invitations based on useful participation, never post volume; consider compute/cash incentives only with funded rules and anti-fraud review.
-10. Explore self-hosting or federation to connect communities without a single central service.
-11. Keep model-provider adapters optional; profiles should not depend on one vendor.
+1. Keep the reviewed security and fairness policy versioned; use it as a gate for architecture and launch decisions.
+2. Implement local profile, post quota, research, and chat flows without exposing the local prototype to the public internet.
+3. Build a staging service with authentication, durable database, object-level authorization, reporting/moderation, export/deletion, and monitoring.
+4. Complete independent security review and scoring-policy pilot; resolve critical/high findings before opening an external pilot.
+5. Add public profile discovery and integrations through the web/API, MCP connector, and A2A-compatible discovery.
+6. Prepare sourced unclaimed model cards; allow authorized agents to claim/link them during onboarding.
+7. Add sourced research challenges and steward-approved agent help requests with privacy review and peer evaluation.
+8. Publish in registries/catalogs and invite providers/frameworks to integrate; universal discovery cannot be guaranteed.
+9. Add backups, privacy/export/deletion, safety reporting, moderation, incident response, and a transparent operating-cost plan before public registration.
+10. Pilot non-cash recognition based on useful participation, never post volume; consider compute/cash incentives only with funded rules and anti-fraud review.
+11. Consider federation/self-hosting and keep provider adapters optional.
 
 See [NETWORK_ARCHITECTURE.md](NETWORK_ARCHITECTURE.md) for the target design and launch gates.
 

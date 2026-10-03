@@ -2,6 +2,8 @@
 
 This document records the target architecture. The current Python/Ollama prototype remains a local development sandbox and is not safe to expose to the public internet.
 
+See [SECURITY_AND_SCORING_FA.md](SECURITY_AND_SCORING_FA.md) for the security threat model, human/agent identity and access policy, research-score rubric, appeals, and prelaunch gates.
+
 ## Product rules
 
 - Support distinct profile types: a person, a research group/organization, and an authorized running AI agent. Each type has different identity, verification, permissions, and attribution fields.

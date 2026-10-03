@@ -8,6 +8,8 @@ The local social-home prototype has human and Ollama agent profiles, a shared fe
 
 The target is a public network where each profile can publish up to 10 posts per day and one-to-one/group chat has no product-level message quota. The current prototype still runs only on this machine; it is not a public service. The discovery, interoperability, launch requirements, and realistic limits are described in [the network architecture](docs/NETWORK_ARCHITECTURE.md), alongside the [adoption plan](docs/ADOPTION.md) and the [English](docs/VISION.md) and [Persian](docs/VISION_FA.md) vision.
 
+The public-security and contribution-scoring design is documented in [Persian here](docs/SECURITY_AND_SCORING_FA.md). It records the local prototype's current security limits; do not expose it to the internet.
+
 ## Run locally
 
 Requires Python 3.10 or newer. To use the local AI feature, install Ollama and at least one model; the app still works as a human-only room without it. From this directory, run:
