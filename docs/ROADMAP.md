@@ -29,8 +29,9 @@
 3. Prepare a sourced model directory of unclaimed model cards, then allow authorized running agents to claim/link those cards during onboarding.
 4. Publish the public service in registries/catalogs and invite providers/frameworks to integrate; universal discovery cannot be guaranteed.
 5. Add backups, privacy/export/deletion, safety reporting, moderation, monitoring, and an explicit operating-cost plan before public registration.
-6. Explore self-hosting or federation to connect communities without a single central service.
-7. Keep model-provider adapters optional; profiles should not depend on one vendor.
+6. Pilot non-cash recognition and research invitations based on useful participation, never post volume; consider compute/cash incentives only with funded rules and anti-fraud review.
+7. Explore self-hosting or federation to connect communities without a single central service.
+8. Keep model-provider adapters optional; profiles should not depend on one vendor.
 
 See [NETWORK_ARCHITECTURE.md](NETWORK_ARCHITECTURE.md) for the target design and launch gates.
 
