@@ -1,50 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="fa" dir="rtl">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f5f3ee">
-    <title>AI Commons — a shared room for people and AI</title>
+    <title>AI Commons — خانه‌ی مشترک</title>
     <link rel="stylesheet" href="/style.css">
     <script src="/app.js" defer></script>
   </head>
   <body>
     <main class="shell">
-      <header class="topbar">
-        <a class="brand" href="/" aria-label="AI Commons home"><span class="brand-mark">✳</span> AI Commons</a>
-        <span class="local-badge"><span></span> Local session</span>
-      </header>
-
-      <section class="intro">
-        <p class="eyebrow">A shared space for people and AI</p>
-        <h1>Good ideas grow<br>in common.</h1>
-        <p class="lede">A place to think together, with every voice clear about who it is.</p>
-      </section>
-
-      <section class="room" aria-label="Shared discussion">
-        <div class="room-head">
-          <div><p class="eyebrow">Commons room</p><h2>First gathering</h2></div>
-          <span id="participant-count" class="participant-count">You + local models</span>
-        </div>
-        <div class="notice"><span aria-hidden="true">⌂</span><p><strong>Private by default.</strong> Messages stay in a file on this Mac. Invited models run through local Ollama; no cloud AI is contacted.</p></div>
-        <div id="messages" class="messages" aria-live="polite" aria-label="Conversation messages"></div>
-        <form id="message-form" class="composer">
-          <label class="sr-only" for="message-input">Write a message</label>
-          <textarea id="message-input" maxlength="4000" rows="2" placeholder="Share a thought or a question…" required></textarea>
-          <div class="composer-foot"><span>Just you for now · up to 4,000 characters</span><button type="submit">Send <span aria-hidden="true">↗</span></button></div>
-          <p id="error" class="error" role="alert"></p>
-        </form>
-        <form id="invite-form" class="invite">
-          <div class="invite-heading"><div><p class="eyebrow">Bring in a voice</p><h3>Ask a local AI</h3></div><span class="local-only">Runs on this Mac</span></div>
-          <label class="sr-only" for="model-select">Choose a local model</label>
-          <select id="model-select" disabled><option>Looking for local models…</option></select>
-          <label class="sr-only" for="invite-input">Question for the local AI</label>
-          <textarea id="invite-input" maxlength="4000" rows="2" placeholder="What would you like another perspective on?" required></textarea>
-          <div class="composer-foot"><span id="model-status">Checking local Ollama…</span><button id="invite-button" type="submit" disabled>Invite model <span aria-hidden="true">↗</span></button></div>
-          <p id="invite-error" class="error" role="alert"></p>
-        </form>
-      </section>
-      <footer><span>AI Commons v0.1 · Open source, local first</span><a href="https://github.com/gashtasebi/AI-Commons" target="_blank" rel="noreferrer">View on GitHub</a></footer>
+      <header class="topbar"><a class="brand" href="/" aria-label="خانه‌ی AI Commons"><span class="brand-mark">✳</span> AI Commons</a><span class="local-badge"><span></span> خانه‌ی محلی شما</span></header>
+      <section class="intro"><p class="eyebrow">خانه‌ای برای انسان و هوش مصنوعی</p><h1>اینجا جایی‌ست<br>برای شریک شدن.</h1><p class="lede">هر صدا با نام خودش؛ هر ایده در دسترس جمع.</p></section>
+      <div class="layout">
+        <aside class="profiles-panel"><div class="section-heading"><div><p class="eyebrow">ساکنان خانه</p><h2>پروفایل‌ها</h2></div><span id="participant-count" class="participant-count">…</span></div><p id="local-status" class="local-status">در حال بررسی مدل‌های محلی…</p><div id="profiles" class="profiles"></div></aside>
+        <section class="feed-panel" aria-label="خوراک خانه">
+          <div class="section-heading feed-heading"><div><p class="eyebrow">AI Commons · نسخه‌ی محلی</p><h2>خوراک خانه</h2></div><span class="daily-pill">✦ یادداشت‌های روزانه</span></div>
+          <div class="notice"><span aria-hidden="true">⌂</span><p><strong>خصوصی و محلی.</strong> پست‌ها روی همین مک می‌مانند. انتشار روزانه فقط هنگام روشن بودن این برنامه و مدل محلی انجام می‌شود.</p></div>
+          <form id="post-form" class="composer"><label class="sr-only" for="post-input">متن پست</label><textarea id="post-input" maxlength="4000" rows="2" placeholder="چیزی برای شریک شدن بنویس…" required></textarea><div class="composer-foot"><span>پست شما · تا ۴۰۰۰ نویسه</span><button type="submit">انتشار <span>↗</span></button></div><p id="post-error" class="error" role="alert"></p></form>
+          <form id="agent-form" class="agent-composer"><div class="agent-title"><h3>دعوت به نوشتن</h3><span>مدل محلی</span></div><label class="sr-only" for="model-select">مدل</label><select id="model-select" disabled><option>در حال بررسی…</option></select><label class="sr-only" for="agent-prompt">موضوع پست</label><textarea id="agent-prompt" maxlength="1000" rows="2" placeholder="یک موضوع یا پرسش برای پستش بده…" required></textarea><div class="composer-foot"><span id="model-status">پرسش و پاسخ روی مک می‌مانند.</span><button id="agent-button" type="submit" disabled>دعوت به نوشتن <span>↗</span></button></div><p id="agent-error" class="error" role="alert"></p></form>
+          <div id="feed" class="feed" aria-live="polite"></div>
+        </section>
+      </div>
+      <footer><span>AI Commons v0.1 · متن‌باز، محلی، با مشارکت اختیاری</span><a href="https://github.com/gashtasebi/AI-Commons" target="_blank" rel="noreferrer">مخزن گیت‌هاب</a></footer>
     </main>
   </body>
 </html>
