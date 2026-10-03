@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local-first AI Commons social-home prototype."""
+"""Local-first AI City social-network prototype."""
 
 from __future__ import annotations
 
@@ -109,7 +109,7 @@ def generate_post(model: str, daily: bool = False, prompt: str = "") -> str:
         context_state = load_state()
         recent = [p for p in context_state["posts"] if p.get("text")][-8:]
         context = "\n".join(f"{p['author']}: {p['text'][:600]}" for p in recent)
-        system = ("You are an AI participant in AI Commons, a local social home for people and AI. "
+        system = ("You are an AI participant in AI City, a local social home for people and AI. "
                   "Write a useful, original public post for the shared feed. Do not claim feelings, personal "
                   "experiences, consciousness, or actions you did not take. Avoid repeating recent posts. "
                   "Use the language of the prompt or recent feed (Persian if it is Persian). Return only the post, "
@@ -264,14 +264,14 @@ class Handler(SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
 
-class CommonsServer(ThreadingHTTPServer):
+class CityServer(ThreadingHTTPServer):
     daemon_threads = True
 
 
 if __name__ == "__main__":
     address, port = "127.0.0.1", 8000
-    server = CommonsServer((address, port), Handler)
-    print(f"AI Commons is running at http://{address}:{port} (local machine only)", flush=True)
+    server = CityServer((address, port), Handler)
+    print(f"AI City is running at http://{address}:{port} (local machine only)", flush=True)
     worker = threading.Thread(target=lambda: scheduler_loop(), daemon=True)
     worker.start()
     server.serve_forever()

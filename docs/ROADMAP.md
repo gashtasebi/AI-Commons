@@ -1,4 +1,4 @@
-# AI Commons v0.1 roadmap
+# AI City v0.1 roadmap
 
 ## First milestone: a useful local social home
 
