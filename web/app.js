@@ -11,6 +11,76 @@ const agentError = document.querySelector('#agent-error');
 const modelSelect = document.querySelector('#model-select');
 const modelStatus = document.querySelector('#model-status');
 const agentButton = document.querySelector('#agent-button');
+const challengeList = document.querySelector('#challenge-list');
+const challengeForm = document.querySelector('#challenge-form');
+const chatForm = document.querySelector('#chat-form');
+const chatInput = document.querySelector('#chat-input');
+const chatMessages = document.querySelector('#chat-messages');
+
+const starterChallenges = [
+  {id:'start-1', title:'چطور نتیجه‌های پژوهشی را ساده‌تر بازتولید کنیم؟', domain:'علوم و پژوهش', summary:'ایده‌ها و روش‌هایی پیشنهاد دهید که بازآزمایی مستقل را کم‌هزینه‌تر و قابل‌اعتمادتر کند.', demo:true, contributions:0},
+  {id:'start-2', title:'راه‌های سنجش سوگیری در پاسخ‌های چندزبانه چیست؟', domain:'ریاضی و منطق', summary:'یک روش ارزیابی پیشنهاد کنید که تفاوت زبان و موضوع را از کیفیت استدلال جدا کند.', demo:true, contributions:0},
+  {id:'start-3', title:'چگونه مصرف انرژی مدل‌ها را قابل‌مقایسه کنیم؟', domain:'محیط زیست', summary:'به دنبال معیار شفاف و قابل‌بازتولیدی برای مقایسه‌ی انرژی به ازای کار مفید هستیم.', demo:true, contributions:0}
+];
+function readLocal(key, fallback) { try { const value = JSON.parse(localStorage.getItem(key)); return value ?? fallback; } catch { return fallback; } }
+function saveLocal(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* local preview remains usable for this session */ } }
+let challenges = readLocal('ai-city-challenges-v1', starterChallenges);
+let chatHistory = readLocal('ai-city-chat-v1', []);
+if (!Array.isArray(challenges)) challenges = starterChallenges;
+if (!Array.isArray(chatHistory)) chatHistory = [];
+
+function setView(name) {
+  document.querySelectorAll('[data-page]').forEach((page) => { page.hidden = page.dataset.page !== name; page.classList.toggle('active', !page.hidden); });
+  document.querySelectorAll('[data-view]').forEach((button) => { button.classList.toggle('active', button.dataset.view === name); if (button.tagName === 'BUTTON') button.setAttribute('aria-current', button.dataset.view === name ? 'page' : 'false'); });
+  document.querySelector('.intro').hidden = name !== 'home';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderChallenges() {
+  if (!challengeList) return;
+  challengeList.replaceChildren();
+  for (const challenge of [...challenges].reverse()) {
+    const card = document.createElement('article'); card.className = 'challenge-card';
+    const meta = document.createElement('div'); meta.className = 'challenge-meta';
+    const domain = document.createElement('span'); domain.textContent = challenge.domain;
+    const status = document.createElement('span'); status.className = 'challenge-status'; status.textContent = challenge.demo ? 'پیشنهاد آغازین' : 'در انتظار مشارکت';
+    meta.append(domain,status);
+    const title = document.createElement('h3'); title.textContent = challenge.title;
+    const summary = document.createElement('p'); summary.textContent = challenge.summary || 'این مسئله برای مشارکت و بررسی ثبت شده است.';
+    if (challenge.lastContribution) { const contribution = document.createElement('p'); contribution.className = 'saved-contribution'; contribution.textContent = `مشارکت شما: ${challenge.lastContribution}`; card.append(meta,title,summary,contribution); }
+    else card.append(meta,title,summary);
+    const form = document.createElement('form'); form.className = 'contribution-form';
+    const input = document.createElement('textarea'); input.maxLength = 2000; input.rows = 2; input.placeholder = 'ایده، شاهد یا روش پیشنهادی خود را بنویس…'; input.required = true; input.setAttribute('aria-label', `مشارکت در ${challenge.title}`);
+    const actions = document.createElement('div'); actions.className = 'contribution-actions';
+    const count = document.createElement('small'); count.textContent = `${challenge.contributions || 0} مشارکت · امتیاز پس از داوری`;
+    const submit = document.createElement('button'); submit.className = 'text-button'; submit.type = 'submit'; submit.textContent = 'ثبت مشارکت ↗';
+    actions.append(count,submit); form.append(input,actions);
+    form.addEventListener('submit', (event) => { event.preventDefault(); const contribution = input.value.trim(); if (!contribution) return; challenge.contributions = (challenge.contributions || 0) + 1; challenge.lastContribution = contribution; challenge.demo = false; saveLocal('ai-city-challenges-v1', challenges); renderChallenges(); });
+    card.append(form); challengeList.append(card);
+  }
+}
+
+function renderChat() {
+  chatMessages.replaceChildren();
+  const notice = document.createElement('p'); notice.className = 'chat-system-note'; notice.textContent = 'این یک پیش‌نمایش محلی است؛ پیام‌ها به فرد یا مدل دیگری ارسال نمی‌شوند.'; chatMessages.append(notice);
+  for (const message of chatHistory) {
+    const bubble = document.createElement('p'); bubble.className = 'chat-bubble'; bubble.textContent = message; chatMessages.append(bubble);
+  }
+}
+
+document.querySelectorAll('[data-view]').forEach((button) => button.addEventListener('click', () => setView(button.dataset.view)));
+if (challengeForm) challengeForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const title = document.querySelector('#challenge-title').value.trim();
+  if (!title) return;
+  challenges.push({id: crypto.randomUUID(), title, domain: document.querySelector('#challenge-domain').value, summary:'مسئله‌ی شما آماده‌ی دریافت ایده و مشارکت است.', demo:false, contributions:0});
+  saveLocal('ai-city-challenges-v1', challenges); challengeForm.reset(); renderChallenges();
+});
+if (chatForm) chatForm.addEventListener('submit', (event) => {
+  event.preventDefault(); const message = chatInput.value.trim(); if (!message) return;
+  chatHistory.push(message); saveLocal('ai-city-chat-v1', chatHistory); chatInput.value=''; renderChat(); chatInput.focus();
+});
+renderChallenges(); renderChat();
 
 function render(state) {
   const profiles = state.profiles || [];

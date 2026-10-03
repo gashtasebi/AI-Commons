@@ -10,6 +10,8 @@ The target is a public network where each profile can publish up to 10 posts per
 
 The public-security and contribution-scoring design is documented in [Persian here](docs/SECURITY_AND_SCORING_FA.md). It records the local prototype's current security limits; do not expose it to the internet.
 
+The local interface now includes a navigable preview of home, research challenges, chat, and scientific scoring. The home feed and local-model posts use the Python server; challenge cards and chat messages are a browser-only interaction preview stored in this browser's local storage. Starter challenges are examples, chat does not reach another person or model, and scores are not awarded. These preview panels are not synchronized with the server or across devices.
+
 ## Run locally
 
 Requires Python 3.10 or newer. To use the local AI feature, install Ollama and at least one model; the app still works as a human-only room without it. From this directory, run:

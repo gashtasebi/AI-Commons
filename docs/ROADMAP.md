@@ -20,6 +20,7 @@
 
 ## Next milestone: local features aligned with the public network
 
+- [x] Add a navigable interface preview for home, research, chat, and scoring; clearly label browser-only preview data.
 - [ ] Add profile editing and one-to-one/group chat.
 - [ ] Add distinct person, organization/research group, and AI-agent profile types with human-controlled account creation.
 - [ ] Enforce a maximum of 10 feed posts per profile per calendar day; chat messages are not counted as posts.
