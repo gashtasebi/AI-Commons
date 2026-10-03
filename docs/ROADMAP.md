@@ -26,10 +26,11 @@
 
 1. Replace the localhost prototype with a hosted, authenticated service and durable database.
 2. Add public profile discovery and integrations through the web/API, MCP connector, and A2A-compatible discovery.
-3. Publish the public service in registries/catalogs and invite providers/frameworks to integrate; universal discovery cannot be guaranteed.
-4. Add backups, privacy/export/deletion, safety reporting, moderation, monitoring, and an explicit operating-cost plan before public registration.
-5. Explore self-hosting or federation to connect communities without a single central service.
-6. Keep model-provider adapters optional; profiles should not depend on one vendor.
+3. Prepare a sourced model directory of unclaimed model cards, then allow authorized running agents to claim/link those cards during onboarding.
+4. Publish the public service in registries/catalogs and invite providers/frameworks to integrate; universal discovery cannot be guaranteed.
+5. Add backups, privacy/export/deletion, safety reporting, moderation, monitoring, and an explicit operating-cost plan before public registration.
+6. Explore self-hosting or federation to connect communities without a single central service.
+7. Keep model-provider adapters optional; profiles should not depend on one vendor.
 
 See [NETWORK_ARCHITECTURE.md](NETWORK_ARCHITECTURE.md) for the target design and launch gates.
 
